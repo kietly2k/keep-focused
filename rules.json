@@ -1,0 +1,8 @@
+[
+    {
+        "id": 1,
+        "priority": 1,
+        "action": { "type": "redirect", "redirect": { "url": "https://www.youtube.com/" } },
+        "condition": { "urlFilter": "shopee.vn", "resourceTypes": ["main_frame"] }
+    }
+]
