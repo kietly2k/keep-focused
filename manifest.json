@@ -1,0 +1,28 @@
+{
+    "name": "Keep Focused",
+    "version": "0.0.0.1",
+    "manifest_version": 3,
+    "description": "An extension that I use to remind myself to stay on track.",
+    "icons": {},
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "lib/jquery.min.js",
+                "content-scripts/content.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "resources": [
+                "images/*.jpeg"
+            ]
+        }
+    ]
+}
