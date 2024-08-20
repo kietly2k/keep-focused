@@ -7,23 +7,12 @@
         "50": "icons/clock.png"
     },
     "permissions": [
-        "storage",
-        "declarativeNetRequest",
-        "declarativeNetRequestWithHostAccess"
+        "declarativeNetRequest"
     ],
     "host_permissions": [
         "<all_urls>"
     ],
     "options_ui": {
         "page": "pages/options.html"
-    },
-    "declarative_net_request": {
-        "rule_resources": [
-            {
-                "id": "ruleset_1",
-                "enabled": true,
-                "path": "rules.json"
-            }
-        ]
     }
 }
