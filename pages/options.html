@@ -3,18 +3,28 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <link rel="stylesheet" href="style.css" />
     </head>
-
     <body>
-        <form>
-            <label for="color">URL 1:</label>
-            <input type="text" id="item1" />
-            <label for="color">URL 2:</label>
-            <input type="text" id="item2" />
-            <label for="color">Redirect URL:</label>
-            <input type="text" id="redirectUrl" />
-            <button id="save" type="button">Save</button>
-        </form>
+        <div class="input-container">
+            <label for="sourceUrl">Source Url:</label>
+            <input type="text" id="sourceUrl" />
+        </div>
+
+        <div class="input-container">
+            <label for="destUrl">Destination Url:</label>
+            <input type="text" id="destUrl" />
+        </div>
+
+        <div class="input-container">
+            <label>Black list:</label>
+            <ul id="blacklist"></ul>
+        </div>
+
+        <button id="save">Save</button>
+        <div id="successMessage" style="display: none">
+            Settings saved successfully!
+        </div>
 
         <script src="options.js"></script>
     </body>
