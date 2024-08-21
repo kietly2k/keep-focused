@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <div class="input-container">
             <label for="sourceUrl">Source Url:</label>
             <input type="text" id="sourceUrl" />
+            <input id="addUrl" type="button" class="button" value="Add" />
         </div>
 
         <div class="input-container">
             <label for="destUrl">Destination Url:</label>
             <input type="text" id="destUrl" />
+            <input id="saveDestUrl" type="button" class="button" value="Save" disabled />
         </div>
 
         <div class="input-container">
@@ -21,7 +23,6 @@
             <ul id="blacklist"></ul>
         </div>
 
-        <button id="save">Save</button>
         <div id="successMessage" style="display: none">
             Settings saved successfully!
         </div>
