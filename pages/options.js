@@ -98,7 +98,39 @@ const getNewRule = async () => {
     ];
 };
 
+const enableExtension = async (enabled) => {
+    // Update the extension's enabled state in storage
+    await chrome.storage.local.set({ enabled });
+    
+    // Get all current rules
+    const rules = await chrome.declarativeNetRequest.getDynamicRules();
+    
+    if (enabled) {
+        // Re-enable all rules that were previously disabled
+        const storedRules = await chrome.storage.local.get('disabledRules');
+        if (storedRules.disabledRules) {
+            await chrome.declarativeNetRequest.updateDynamicRules({
+                addRules: storedRules.disabledRules
+            });
+            // Clear stored rules
+            await chrome.storage.local.remove('disabledRules');
+        }
+    } else {
+        // Store current rules before disabling them
+        await chrome.storage.local.set({ disabledRules: rules });
+        // Remove all rules
+        const ruleIds = rules.map(rule => rule.id);
+        await chrome.declarativeNetRequest.updateDynamicRules({
+            removeRuleIds: ruleIds
+        });
+    }
+};
+
 const init = async () => {
+    // Get extension enabled state
+    const { enabled = true } = await chrome.storage.local.get('enabled');
+    document.getElementById('enableToggle').checked = enabled;
+
     // Get old rules
     const oldRules = await chrome.declarativeNetRequest.getDynamicRules();
     const urls = oldRules.map((x) => x.condition.urlFilter);
@@ -141,5 +173,10 @@ const addUrlToList = (url) => {
     // Append the new <li> to the <ul>
     ul.appendChild(li);
 };
+
+document.getElementById('enableToggle').addEventListener('change', async (event) => {
+    await enableExtension(event.target.checked);
+    showSuccessMessage();
+});
 
 init();
